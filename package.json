@@ -1,0 +1,23 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "A command line application that can be used to manage a company's employee database using node.js, inquirer, and mysql.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akemp24/Employee-trailer.git"
+  },
+  "author": "Asia Kemp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akemp24/Employee-trailer/issues"
+  },
+  "homepage": "https://github.com/Akemp24/Employee-trailer#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "mysql2": "^3.5.0"
+  }
+}
