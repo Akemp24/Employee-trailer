@@ -55,10 +55,23 @@ function mainMenu() {
         }
     });
 }
+
 // Functions to view all the departments, roles, and employees
+function viewAllDepartments(){};
+
+function viewAllRoles(){};
+
+function viewAllEmployees(){};
 
 // Function to add departments, roles, and employees
+function addDepartment(){};
+
+function addRole(){};
+
+function addEmployee(){};
 
 // Function to update employee roles
+function updateEmployeeRole(){};
 
 // code to start the application
+mainMenu();
