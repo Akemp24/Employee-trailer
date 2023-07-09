@@ -12,6 +12,7 @@ const connection = mysql.createConnection(
       },
       console.log(`Connected to the employees_db database.`)
 );
-
+// make it a promise connection
+const promiseConnection = connection.promise();
 // export the mysql connection
-module.exports = connection;
+module.exports = promiseConnection;
