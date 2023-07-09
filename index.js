@@ -25,9 +25,35 @@ function mainMenu() {
     ])
     .then((answer) => {
         switch (answers.menuChoice) {
-            
+            case 'View All Departments':
+                viewAllDepartments();
+                break;
+            case 'View All Roles':
+                viewAllRoles();
+                break;
+            case 'View All Employees':
+                viewAllEmployees();
+                break;
+            case 'Add A Department':
+                addDepartment();
+                break;
+            case 'Add A Role':
+                addRole();
+                break;
+            case 'Add An Employee':
+                addEmployee();
+                break;
+            case 'Update Employee Role':
+                updateEmployeeRole();
+                break;
+            case 'Exit':
+                console.log('Thank you and Goodbye');
+                process.exit(0);
+            default:
+                console.log('Not a Choice, please select again');
+                displayMainMenu();
         }
-    })
+    });
 }
 // Functions to view all the departments, roles, and employees
 
