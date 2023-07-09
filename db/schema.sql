@@ -13,7 +13,6 @@ CREATE TABLE role (
     job_title VARCHAR (30),
     department_name VARCHAR(30),
     salary INT NOT NULL
-
 );
 
 CREATE TABLE employee (
@@ -23,6 +22,5 @@ CREATE TABLE employee (
     job_title VARCHAR (30),
     department VARCHAR(30),
     salary INT NOT NULL,
-    managers VARCHAR (30),
-
+    managers VARCHAR (30)
 );
