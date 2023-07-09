@@ -1,5 +1,4 @@
 // Import required packages
-const inquirer = require('inquirer');
 const mysql = require('mysql2');
 require('dotenv').config();
 
@@ -14,4 +13,5 @@ const connection = mysql.createConnection(
       console.log(`Connected to the employees_db database.`)
 );
 
+// export the mysql connection
 module.exports = connection;
