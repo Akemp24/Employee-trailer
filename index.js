@@ -3,7 +3,8 @@ const inquirer = require('inquirer');
 const department = require('./department');
 const role = require('./roles');
 const employee = require('./employee');
-
+// import package to show data in list/table
+const { table } = require('table');
 // Function for the main menu
 function mainMenu() {
     inquirer.prompt([
@@ -57,7 +58,21 @@ function mainMenu() {
 }
 
 // Functions to view all the departments, roles, and employees
-function viewAllDepartments(){};
+function viewAllDepartments(){
+    department.getDepartments().then((departments) => {
+        const data = [['ID', 'Name']];
+        departements.forEach((dept) => {
+            data.push([dept.id, dept.name]);
+        });
+        const output = table(data);
+        console.log(output);
+        mainMenu();
+    })
+    .catch((error) => {
+        console.error('Error retrieving departments:', error);
+        mainMenu();
+    });
+};
 
 function viewAllRoles(){};
 
