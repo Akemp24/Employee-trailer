@@ -7,7 +7,7 @@ function getRoles() {
 }
 
 function addRole(title, department, salary) {
-    return connection.query('INSERT INTO role (title, department, salary) VALUE (?, ?, ?', [title, department, salary]);
+    return connection.query('INSERT INTO role (title, department, salary) VALUE (?, ?, ?)', [title, department, salary]);
 }
 
 // export the function
