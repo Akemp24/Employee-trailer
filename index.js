@@ -23,7 +23,7 @@ function mainMenu() {
             ]
         },
     ])
-    .then((answer) => {
+    .then((answers) => {
         switch (answers.menuChoice) {
             case 'View All Departments':
                 viewAllDepartments();
@@ -158,11 +158,33 @@ function addEmployee(){
                 name:'firstName'
             },
             {
-                type:'input'
-            }
+                type:'input',
+                message:'What is the employee last name?',
+                name:'lastName'
+            },
+            {
+                type:'input',
+                message:'What is the job_title?',
+                name:'jobTitle'
+            },
+            {
+                type:'input',
+                message:'What is the department?',
+                name:'department'
+            },
+            {
+                type:'input',
+                message:'What is the salary',
+                name:'salary'
+            },
+            {
+                type:'input',
+                message:'Who is the manager?',
+                name:'manager'
+            },
         ])
         .then((answers) => {
-            employee.addEmployee(answers.firstName)
+            employee.addEmployee(answers.firstName, answers.lastName, answers.jobTitle, answers.department, answers.salary, answers.manager)
             .then(() => {
                 console.log('Employee added successfully');
                 mainMenu();
@@ -175,7 +197,59 @@ function addEmployee(){
 };
 
 // Function to update employee roles
-function updateEmployeeRole(){};
+function updateEmployeeRole(){
+    employee.getEmployee().then((employee) => {
+        inquirer
+        .prompt([
+            {
+                type:'list',
+                message:'Select employee to update',
+                name:'employeeId',
+                choices: viewAllEmployees.map((emp) => ({
+                    name: `${emp.first_name} ${emp.last_name}`,
+                    value: emp.id,
+                })),
+            },
+        ])
+        .then((answer) => {
+            const employeeId = answer.employeeId;
+
+            role.getRoles()
+            .then((roles) => {
+                inquirer.prompt([
+                    {
+                        type:'list',
+                        message:'Please select the new role.',
+                        name:'roleId',
+                        choices: roles.map((role) => ({
+                            name: role.title,
+                            value: role.id,
+                        })),
+                    },
+                ])
+                .then((answer) => {
+                    const roleId = answer.roleId;
+                    employee.updateEmployeeRole(employeeId, roleId).then(() => {
+                        console.log('Employee role updated successfully');
+                        mainMenu();
+                    })
+                    .catch((error) => {
+                        console.error('Error updating employee role:', error);
+                        mainMenu();
+                    })
+                });
+            })
+            .catch((error) => {
+                console.error('Error retrieving roles:', error);
+                mainMenu();
+            });
+        });
+    })
+    .catch((error) => {
+        console.error('Error retrieving employees:', error);
+        mainMenu();
+    })
+};
 
 // code to start the application
 mainMenu();
