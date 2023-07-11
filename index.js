@@ -10,7 +10,7 @@ function mainMenu() {
         {
             type:'list',
             message:'What would you like to do?',
-            name:'menuChoices',
+            name:'menuChoice',
             choices: [
                 'View All Departments',
                 'View All Roles',
@@ -51,7 +51,7 @@ function mainMenu() {
                 process.exit(0);
             default:
                 console.log('Not a Choice, please select again');
-                displayMainMenu();
+                mainMenu();
         }
     });
 }
@@ -81,7 +81,7 @@ function viewAllRoles(){
 };
 
 function viewAllEmployees(){
-    employee.getRoles().then((employee) => {
+    employee.getEmployee().then((employee) => {
         console.table(employee);
         mainMenu();
     })
