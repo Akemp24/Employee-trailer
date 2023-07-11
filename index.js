@@ -3,8 +3,7 @@ const inquirer = require('inquirer');
 const department = require('./department');
 const role = require('./roles');
 const employee = require('./employee');
-// import package to show data in list/table
-const { table } = require('table');
+
 // Function for the main menu
 function mainMenu() {
     inquirer.prompt([
@@ -59,14 +58,9 @@ function mainMenu() {
 
 // Functions to view all the departments, roles, and employees
 function viewAllDepartments(){
-    department.getDepartments().then((departments) => {
+    department.getDepartments().then((department) => {
         // Formatting data for display
-        const data = [['ID', 'Name']];
-        departements.forEach((dept) => {
-            data.push([dept.id, dept.name]);
-        });
-        const output = table(data);
-        console.log(output);
+        console.table(department);
         mainMenu();
     })
     .catch((error) => {
@@ -75,21 +69,41 @@ function viewAllDepartments(){
     });
 };
 
-function viewAllRoles(){};
+function viewAllRoles(){
+    role.getRoles().then((role) => {
+        console.table(role);
+        mainMenu();
+    })
+    .catch((error) => {
+        console.error('Error retrieving roles:', error);
+        mainMenu();
+    })
+};
 
-function viewAllEmployees(){};
+function viewAllEmployees(){
+    employee.getRoles().then((employee) => {
+        console.table(employee);
+        mainMenu();
+    })
+    .catch((error) => {
+        console.error('Error retrieving employee:', error);
+        mainMenu();
+    })
+};
 
 // Function to add departments, roles, and employees
 function addDepartment(){
     // use inquirer prompt in order to retrieve data to push into the table
     inquirer
         .prompt([
-            type:'input',
-            message:'What is the department name?',
-            name:'deptName'
+            {
+                type:'input',
+                message:'What is the department name?',
+                name:'deptName'
+            },
         ])
         .then((answers) => {
-            department.addDepartment(answers.departmentName)
+            department.addDepartment(answers.deptName)
             .then(() => {
                 console.log('Department added successfully');
                 mainMenu();
@@ -102,9 +116,63 @@ function addDepartment(){
 };
 
 
-function addRole(){};
+function addRole(){
+    // Use same outline for addDepartment and reconfigure to meet the role criteria
+    inquirer
+        .prompt([
+            {
+                type:'input',
+                message:'What is the role you want to add?',
+                name:'roleTitle'
+            },
+            {
+                type:'input',
+                message:'What is the department name?',
+                name:'roleDept'
+            },
+            {
+                type:'number',
+                message:'What is the salary?',
+                name:'roleSalary'
+            },
+        ])
+        .then((answers) => {
+            role.addRole(answers.roleTitle, answers.roleDept, answers.roleSalary)
+            .then(() => {
+                console.log('Role added successfully');
+                mainMenu();
+            })
+            .catch((error) => {
+                console.error('Error adding role:', error);
+                mainMenu();
+            });
+        });
+};
 
-function addEmployee(){};
+function addEmployee(){
+    inquirer
+        .prompt([
+            {
+                type:'input',
+                message:'What is the employee first name?',
+                name:'firstName'
+            },
+            {
+                type:'input'
+            }
+        ])
+        .then((answers) => {
+            employee.addEmployee(answers.firstName)
+            .then(() => {
+                console.log('Employee added successfully');
+                mainMenu();
+            })
+            .catch((error) => {
+                console.error('Error adding employee:', error);
+                mainMenu();
+            });
+        });
+};
 
 // Function to update employee roles
 function updateEmployeeRole(){};
