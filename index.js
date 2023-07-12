@@ -198,14 +198,14 @@ function addEmployee(){
 
 // Function to update employee roles
 function updateEmployeeRole(){
-    employee.getEmployee().then((employee) => {
+    employee.getEmployee().then((employees) => {
         inquirer
         .prompt([
             {
                 type:'list',
                 message:'Select employee to update',
                 name:'employeeId',
-                choices: viewAllEmployees.map((emp) => ({
+                choices: employees.map((emp) => ({
                     name: `${emp.first_name} ${emp.last_name}`,
                     value: emp.id,
                 })),

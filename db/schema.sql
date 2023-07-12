@@ -25,5 +25,6 @@ CREATE TABLE employee (
     department VARCHAR(30),
     salary INT NOT NULL,
     managers VARCHAR (30),
+    role_id INT,
     PRIMARY KEY (id)
 );
