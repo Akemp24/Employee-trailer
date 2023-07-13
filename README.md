@@ -17,6 +17,8 @@
   ## Usage
   Once installing (please refer to the installation instructions) you will have a menu in your terminal. You use the arrow keys in order to select which option you would like. If you are just trying to view one of the charts then it will show the chart in the terminal. If you are trying to add/update something then it will ask you a series of questions and then it will update the information based on your answers. If you are done using the terminal menu then select exit.
 
+  Here is a video to accompany: https://drive.google.com/file/d/1TB3YYtYgprSY9xtn0vKnKQut-lltNQF_/view
+
   ## Questions
   If you have any questions you can email me at: Asiakemp24@gmail.com.
   Or you can look at my github account at: github.com/Akemp24.
